@@ -1,15 +1,16 @@
-let bertha;
 let ponyPic,rainbowPic;
 let ponies =[];
 let whichpony=0;
-let number = 100;
+let number = 20;
 let mouseboxX;
 let mouseboxY;
+let meow;
 function setup(){
-  createCanvas(400,400);
-  bertha = new Pony();
+  createCanvas(600,600);
+  
   ponyPic = loadImage('assets/cat0.png');
   rainbowPic=loadImage('assets/box.png');
+  meow = loadSound('assets/meow.wav')
   for (let i=0; i<number; i++){
   	ponies[i] = new Pony();
   }
@@ -17,23 +18,24 @@ function setup(){
  
 function draw(){
 	background(0);
-bertha.display();
-bertha.move();
+
+
 for(i=0;i<number;i++){
 	ponies[i].move();
+	ponies[i].display();
 	for(let j=0; j<number; j++){
-		if(ponies[i] != ponies[j] && ponies[i].intersects(ponies[j])){
+		if(i != j && ponies[i].intersects(ponies[j]) && ponies[i].visible && ponies[j].visible){
 		
 			ponies[i].visible=false;
 			ponies[j].visible=false;
+			meow.play();
 		}
 	  
 	}
-	ponies[i].display();
+	
 	ponies[i].bounce();
 	}
-	//noCurser();
-	//rect(mouseX,mouseY,width/4,width/8);
+	
 imageMode(CENTER);
 image(rainbowPic,mouseboxX,mouseboxY,width/4,width/4);
 
