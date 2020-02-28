@@ -1,16 +1,26 @@
-let ponyPic,rainbowPic;
+let ponyPic= [];
+let rainbowPic;
 let ponies =[];
 let whichpony=0;
-let number = 20;
+let number = 10;
 let mouseboxX;
 let mouseboxY;
-let meow;
+let meow=[];
+
 function setup(){
   createCanvas(600,600);
-  
-  ponyPic = loadImage('assets/cat0.png');
+
+for (var i = 0; i <number; i++) {
+
+  ponyPic[i] = loadImage('assets/cat'+i%3+'.png');
+
+  }
   rainbowPic=loadImage('assets/box.png');
-  meow = loadSound('assets/meow.wav')
+
+  for (let m = 0; m <number; m++) {
+  	meow[m] = loadSound('assets/meow'+m%2+'.wav');
+  }
+
   for (let i=0; i<number; i++){
   	ponies[i] = new Pony();
   }
@@ -18,17 +28,25 @@ function setup(){
  
 function draw(){
 	background(0);
-
+//meow.playMode('untilDone');
 
 for(i=0;i<number;i++){
 	ponies[i].move();
 	ponies[i].display();
 	for(let j=0; j<number; j++){
 		if(i != j && ponies[i].intersects(ponies[j]) && ponies[i].visible && ponies[j].visible){
+			
+			// ponies[i].moveAway();
+			// ponies[j].moveAway();
+			
+			// ponies[i].visible=false;
+			// ponies[j].visible=false;
+			
+  	
+  			meow[0].playMode('untilDone');
+			meow[0].play();
 		
-			ponies[i].visible=false;
-			ponies[j].visible=false;
-			meow.play();
+
 		}
 	  
 	}
@@ -49,7 +67,9 @@ function mousePressed(){
 	ponies[whichpony].makePonyVisible();
 	whichpony++;
 	whichpony= whichpony%number;
+	
   }
+
 // class Pony{
 // 	constructor(){
 // 		this.x=random(width);

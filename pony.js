@@ -9,8 +9,11 @@ class Pony{
 	display(){
 		if(this.visible){
 		imageMode(CENTER);
-		image(ponyPic,this.x,this.y,100,130);
-		}
+		let whichCat=0;
+		image(ponyPic[i],this.x,this.y,100,130);
+		
+	}
+
 	}
 
 	move(){
@@ -43,8 +46,18 @@ class Pony{
 		let d = dist(this.x,this.y,other.x,other.y);
 		if(d<=100){
 			return true;
+			
 		}else{
 			return false;
+
 		}
+	}
+
+	moveAway(){
+		this.x=this.x+this.xspeed*-1;
+		this.y=this.y+this.yspeed*-1;
+		// other.x=other.x+other.xspeed*-1;
+		// other.y=other.y+other.yspeed*-1;
+		
 	}
 }
