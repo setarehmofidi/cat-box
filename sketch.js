@@ -8,11 +8,11 @@ let mouseboxY;
 let meow=[];
 
 function setup(){
-  createCanvas(600,600);
+  createCanvas(windowWidth, windowHeight);
 
 for (var i = 0; i <number; i++) {
 
-  ponyPic[i] = loadImage('assets/cat'+i%3+'.png');
+  ponyPic[i] = loadImage('assets/cat'+i%7+'.png');
 
   }
   rainbowPic=loadImage('assets/box.png');
@@ -42,7 +42,7 @@ for(i=0;i<number;i++){
 			// ponies[i].visible=false;
 			// ponies[j].visible=false;
 			
-  	
+  
   			meow[0].playMode('untilDone');
 			meow[0].play();
 		
@@ -55,7 +55,7 @@ for(i=0;i<number;i++){
 	}
 	
 imageMode(CENTER);
-image(rainbowPic,mouseboxX,mouseboxY,width/4,width/4);
+image(rainbowPic,mouseboxX,mouseboxY,width/8,width/8);
 
 // ponies[5].intersects(ponies[3]);
 }
