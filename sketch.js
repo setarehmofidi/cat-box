@@ -6,10 +6,12 @@ let number = 10;
 let mouseboxX;
 let mouseboxY;
 let meow=[];
+let numMeow = 9;
 
 function setup(){
   createCanvas(windowWidth, windowHeight);
-
+  //let amplitude = new p5.Amplitude(toggleNormalize(true));
+  			
 for (var i = 0; i <number; i++) {
 
   ponyPic[i] = loadImage('assets/cat'+i%7+'.png');
@@ -17,8 +19,8 @@ for (var i = 0; i <number; i++) {
   }
   rainbowPic=loadImage('assets/box.png');
 
-  for (let m = 0; m <number; m++) {
-  	meow[m] = loadSound('assets/meow'+m%2+'.wav');
+  for (let m = 0; m <numMeow; m++) {
+  	meow[m] = loadSound('assets/meow'+m+'.wav');
   }
 
   for (let i=0; i<number; i++){
@@ -36,15 +38,10 @@ for(i=0;i<number;i++){
 	for(let j=0; j<number; j++){
 		if(i != j && ponies[i].intersects(ponies[j]) && ponies[i].visible && ponies[j].visible){
 			
-			// ponies[i].moveAway();
-			// ponies[j].moveAway();
-			
-			// ponies[i].visible=false;
-			// ponies[j].visible=false;
-			
-  
-  			meow[0].playMode('untilDone');
-			meow[0].play();
+		
+		
+  			meow[i%numMeow].playMode('untilDone');
+			meow[i%numMeow].play();
 		
 
 		}
@@ -57,7 +54,6 @@ for(i=0;i<number;i++){
 imageMode(CENTER);
 image(rainbowPic,mouseboxX,mouseboxY,width/8,width/8);
 
-// ponies[5].intersects(ponies[3]);
 }
 
 function mousePressed(){
