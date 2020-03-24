@@ -1,36 +1,35 @@
-let ponyPic= [];
-let rainbowPic;
-let ponies =[];
-let whichpony=0;
+let ponyPic= []; //box pic here
+let rainbowPic;//box
+let ponies =[]; // Cats!
+let whichpony=0;//whichCat
 let number = 10;
-let mouseboxX;
-let mouseboxY;
+let mouseboxX;//hit box X
+let mouseboxY;//hit box Y
 let meow=[];
 let numMeow = 9;
 
 function setup(){
   createCanvas(windowWidth, windowHeight);
-  //let amplitude = new p5.Amplitude(toggleNormalize(true));
+  
   			
-for (var i = 0; i <number; i++) {
+for (var i = 0; i <number; i++) { //loading 8 cat picture files names cat(number).png
 
   ponyPic[i] = loadImage('assets/cat'+i%7+'.png');
 
   }
   rainbowPic=loadImage('assets/box.png');
 
-  for (let m = 0; m <numMeow; m++) {
+  for (let m = 0; m <numMeow; m++) { //loading differenet meow sounds to go through
   	meow[m] = loadSound('assets/meow'+m+'.wav');
   }
 
   for (let i=0; i<number; i++){
-  	ponies[i] = new Pony();
+  	ponies[i] = new Pony(); //creating instances of  a class
   }
 }
  
 function draw(){
 	background(0);
-//meow.playMode('untilDone');
 
 for(i=0;i<number;i++){
 	ponies[i].move();
@@ -40,8 +39,9 @@ for(i=0;i<number;i++){
 			
 		
 		
-  			meow[i%numMeow].playMode('untilDone');
-			meow[i%numMeow].play();
+  			meow[i%numMeow].playMode('untilDone');  //prevents the sounds from being played on top of each other
+
+			meow[i%numMeow].play();//modulo acts like a counter to go through all numbers in an array
 		
 
 		}
@@ -56,7 +56,7 @@ image(rainbowPic,mouseboxX,mouseboxY,width/8,width/8);
 
 }
 
-function mousePressed(){
+function mousePressed(){//creating a new instance of a class every time mouse is clicked
 	mouseboxX=mouseX;
 	mouseboxY=mouseY;
 	ponies[whichpony].teleportPony(mouseX,mouseY);
@@ -66,53 +66,4 @@ function mousePressed(){
 	
   }
 
-// class Pony{
-// 	constructor(){
-// 		this.x=random(width);
-// 		this.y= random(height);
-// 		this.xspeed=random(-5,5);
-// 		this.yspeed=random(-5,5);
-// 		this.visible=false;
-// 	}
-// 	display(){
-// 		if(this.visible){
-// 		imageMode(CENTER);
-// 		image(ponyPic,this.x,this.y,100,130);
-// 		}
-// 	}
 
-// 	move(){
-// 		this.x=this.x+this.xspeed;
-// 		this.y=this.y+this.yspeed;
-
-// 		// if((this.x>mouseboxX && this.x<(mouseboxX+50))&&(this.y>mouseboxY && this.y<(mouseboxY+50))){
-// 		// 	this.xspeed=this.xspeed*1.5
-// 		// 	this.yspeed=this.yspeed*1.5
-// 		// }
-
-// 	}
-// 	bounce(){
-// 		if(this.x<30 || this.x>(width-30)){
-// 			this.xspeed= -this.xspeed
-// 		}
-// 		if(this.y<30 || this.y>(height-30)){
-// 			this.yspeed= -this.yspeed
-// 		}
-// 	}
-// 	teleportPony(xloc,yloc){
-// 		this.x=xloc;
-// 		this.y=yloc;
-// 	}
-// 	makePonyVisible(){
-// 		this.visible=true;
-// 	}
-
-// 	intersects(other){
-// 		let d = dist(this.x,this.y,other.x,other.y);
-// 		if(d<=100){
-// 			return true;
-// 		}else{
-// 			return false;
-// 		}
-// 	}
-// }
