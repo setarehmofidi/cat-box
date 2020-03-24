@@ -1,10 +1,10 @@
-class Pony{
+class Pony{ //In this case Cats!
 	constructor(){
 		this.x=random(width);
 		this.y= random(height);
 		this.xspeed=random(-5,5);
 		this.yspeed=random(-5,5);
-		this.visible=false;
+		this.visible=false;//boolean used to determines if a new instnance is being displayed or not
 	}
 	display(){
 		if(this.visible){
@@ -20,13 +20,10 @@ class Pony{
 		this.x=this.x+this.xspeed;
 		this.y=this.y+this.yspeed;
 
-		// if((this.x>mouseboxX && this.x<(mouseboxX+50))&&(this.y>mouseboxY && this.y<(mouseboxY+50))){
-		// 	this.xspeed=this.xspeed*1.5
-		// 	this.yspeed=this.yspeed*1.5
-		// }
+		
 
 	}
-	bounce(){
+	bounce(){//function for bouncing the objects off the edges
 		if(this.x<30 || this.x>(width-30)){
 			this.xspeed= -this.xspeed
 		}
@@ -42,7 +39,7 @@ class Pony{
 		this.visible=true;
 	}
 
-	intersects(other){
+	intersects(other){ //Collision detection
 		let d = dist(this.x,this.y,other.x,other.y);
 		if(d<=100){
 			return true;
@@ -53,7 +50,7 @@ class Pony{
 		}
 	}
 
-	moveAway(){
+	moveAway(){//This actually doesn't work!
 		this.x=this.x+this.xspeed*-1;
 		this.y=this.y+this.yspeed*-1;
 		// other.x=other.x+other.xspeed*-1;
